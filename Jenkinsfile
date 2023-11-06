@@ -44,5 +44,14 @@ pipeline {
         always {
             cleanWs()
             }
+        success {
+                    slackSend color: "good",  message: 'Pipeline completed successfully!',
+                     tokenCredentialId: 'slack-alert-bot'
+              }  
+        failure {
+                    slackSend color: "danger",
+                     message: 'Frontend Pipeline failed. Check logs.',
+                     tokenCredentialId: 'slack-alert-bot'
+             }    
           }
 }
