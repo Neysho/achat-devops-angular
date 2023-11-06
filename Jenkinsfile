@@ -28,13 +28,11 @@ pipeline {
             }
             stage('docker build'){
                 steps{
-                    container('docker') {
                         sh ''' ls
                                docker build -t neysho/achat-frontend:1 .
                                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                                docker push neysho/achat-frontend:1
                         '''
-               }
               }
             }
 
